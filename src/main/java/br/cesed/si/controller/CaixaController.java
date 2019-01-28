@@ -18,7 +18,7 @@ import br.cesed.si.models.Caixa;
 import br.cesed.si.service.CaixaService;
 
 @Controller
-@RequestMapping("/caixa")
+@RequestMapping("/caixas")
 public class CaixaController {
 
 	@Autowired
@@ -30,20 +30,20 @@ public class CaixaController {
 		return new ResponseEntity<Caixa>(caixaservice.readId(id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/todos")
+	@GetMapping()
 	public ResponseEntity<List<Caixa>> readAll()
 	{
 		return new ResponseEntity<List<Caixa>>(caixaservice.readAll(), HttpStatus.OK);
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping()
 	public ResponseEntity<Caixa> create(@RequestBody Caixa caixa)
 	{
 		caixaservice.creatCaixa(caixa);
 		return new ResponseEntity<Caixa>(HttpStatus.OK);
 	}
 	
-	@PutMapping("/atualiza")
+	@PutMapping()
 	public ResponseEntity<Caixa> update(@RequestBody Caixa caixa) 
 	{	
 		caixaservice.updateCaixa(caixa);

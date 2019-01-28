@@ -21,7 +21,7 @@ import br.cesed.si.service.CarrinhoComprasService;
 
 
 @Controller
-@RequestMapping("/carrinho")
+@RequestMapping("/carrinhos")
 public class CarrinhoComprasController {
 
 	@Autowired
@@ -33,20 +33,20 @@ public class CarrinhoComprasController {
 		return new ResponseEntity<CarrinhoCompras>(service.readId(id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/todos")
+	@GetMapping()
 	public ResponseEntity<List<CarrinhoCompras>> readAll()
 	{
 		return new ResponseEntity<List<CarrinhoCompras>>(service.readAll(), HttpStatus.OK);
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping()
 	public ResponseEntity<AdicionarCarrinho> create(@RequestBody AdicionarCarrinho carrinhocompras)
 	{
 		service.creatCarrinho(carrinhocompras);
 		return new ResponseEntity<AdicionarCarrinho>(HttpStatus.OK);
 	}
 	
-	@PutMapping("/atualiza")
+	@PutMapping()
 	public ResponseEntity<CarrinhoCompras> update(@RequestBody CarrinhoCompras carrinhocompras) 
 	{	
 		service.updateCarrinho(carrinhocompras);

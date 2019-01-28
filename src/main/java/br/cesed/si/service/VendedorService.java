@@ -70,5 +70,34 @@ public class VendedorService {
 		}
 	}
 	
+	
+	public List<RetornarVendedor> readByName(String nome) 
+	{	List<Vendedor> vendedores = new ArrayList<>(); 
+		vendedores.addAll(repository.buscaPorNome(nome));
+		List<RetornarVendedor> retornarVendedores = new ArrayList<>();
+		for (Vendedor vendedor : vendedores) {
+				RetornarVendedor retornarVendedor = new RetornarVendedor();
+				retornarVendedor.setCpf(vendedor.getCpf());
+				retornarVendedor.setNome(vendedor.getNome());
+				retornarVendedores.add(retornarVendedor);
+		}
+		return retornarVendedores;
+	}
+	
+	public List<RetornarVendedor> readByCpf(String cpf)
+	{	List<Vendedor> vendedores = new ArrayList<>(); 
+		vendedores.addAll(repository.buscaPorCpf(cpf));
+		List<RetornarVendedor> retornarVendedores = new ArrayList<>();
+		for (Vendedor vendedor : vendedores) {
+				RetornarVendedor retornarVendedor = new RetornarVendedor();
+				retornarVendedor.setCpf(vendedor.getCpf());
+				retornarVendedor.setNome(vendedor.getNome());
+				retornarVendedores.add(retornarVendedor);
+	}
+	return retornarVendedores;
+	}
+	
+	
+	
 }
 

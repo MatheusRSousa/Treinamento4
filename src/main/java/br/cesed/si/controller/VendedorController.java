@@ -3,6 +3,7 @@ package br.cesed.si.controller;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ import br.cesed.si.service.VendedorService;
 
 
 @Controller
-@RequestMapping("/vendedor")
+@RequestMapping("/vendedores")
 public class VendedorController {
 
 	@Autowired
@@ -34,24 +35,24 @@ public class VendedorController {
 		return new ResponseEntity<RetornarVendedor>(service.readId(id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/todos")
+	@GetMapping()
 	public ResponseEntity<List<RetornarVendedor>> readAll()
 	{
 		return new ResponseEntity<List<RetornarVendedor>>(service.readAll(), HttpStatus.OK);
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping()
 	public ResponseEntity<CadastrarVendedor> create(@RequestBody CadastrarVendedor cadastrarVendedor)
 	{
 		try {
 			service.creatVendedor(cadastrarVendedor);
 		} catch (Exception e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
-		return new ResponseEntity<CadastrarVendedor>(HttpStatus.OK);
+		return new ResponseEntity<CadastrarVendedor>(HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/atualiza")
+	@PutMapping()
 	public ResponseEntity<Vendedor> update(@RequestBody Vendedor vendedor) 
 	{	
 		service.updateVendedor(vendedor);
@@ -63,5 +64,17 @@ public class VendedorController {
 	{
 		service.deleteVendedor(id);
 		return new ResponseEntity<Vendedor>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<RetornarVendedor>> readByAllName(@PathVariable String nome)
+	{
+		return new ResponseEntity<List<RetornarVendedor>>(service.readByName(nome),HttpStatus.OK);
+	}
+	
+	@GetMapping("/cpf/{cpf}")
+	public ResponseEntity<List<RetornarVendedor>> readByAllCpf(@PathVariable String cpf)
+	{
+		return new ResponseEntity<List<RetornarVendedor>>(service.readByCpf(cpf), HttpStatus.OK);
 	}
 }

@@ -19,7 +19,7 @@ import br.cesed.si.service.ProdutoService;
 
 
 @Controller
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 public class ProdutoController {
 
 	@Autowired
@@ -31,13 +31,13 @@ public class ProdutoController {
 		return new ResponseEntity<Produto>(service.readId(id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/todos")
+	@GetMapping()
 	public ResponseEntity<List<Produto>> readAll()
 	{
 		return new ResponseEntity<List<Produto>>(service.readAll(), HttpStatus.OK);
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping()
 	public ResponseEntity<Produto> create(@RequestBody Produto produto)
 	{
 		try {
@@ -48,7 +48,7 @@ public class ProdutoController {
 		return new ResponseEntity<Produto>(HttpStatus.OK);
 	}
 	
-	@PutMapping("/atualiza")
+	@PutMapping()
 	public ResponseEntity<Produto> update(@RequestBody Produto produto) 
 	{	
 		service.updateProduto(produto);
