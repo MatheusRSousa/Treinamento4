@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.cesed.si.dto.CadastrarVendedor;
 import br.cesed.si.dto.RetornarVendedor;
@@ -66,14 +67,14 @@ public class VendedorController {
 		return new ResponseEntity<Vendedor>(HttpStatus.OK);
 	}
 	
-	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<RetornarVendedor>> readByAllName(@PathVariable String nome)
+	@GetMapping("/nome")
+	public ResponseEntity<List<RetornarVendedor>> readByAllName(@RequestParam String nome)
 	{
 		return new ResponseEntity<List<RetornarVendedor>>(service.readByName(nome),HttpStatus.OK);
 	}
 	
-	@GetMapping("/cpf/{cpf}")
-	public ResponseEntity<List<RetornarVendedor>> readByAllCpf(@PathVariable String cpf)
+	@GetMapping("/cpf")
+	public ResponseEntity<List<RetornarVendedor>> readByAllCpf(@RequestParam String cpf)
 	{
 		return new ResponseEntity<List<RetornarVendedor>>(service.readByCpf(cpf), HttpStatus.OK);
 	}

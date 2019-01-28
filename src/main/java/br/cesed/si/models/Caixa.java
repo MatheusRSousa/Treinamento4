@@ -1,11 +1,15 @@
 package br.cesed.si.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -17,14 +21,18 @@ public class Caixa {
 	@Column(name = "caixa_id")
 	private Long id;
 	
-	@Column(name = "valor_compra", nullable = false)
+	@Column(name = "valor_compra")
 	private Double valorCompra;
 	
-	@Column(name = "valor_recebido",nullable = false)
+	@Column(name = "valor_recebido", nullable = false)
 	private Double valorRecebido;
 	
 	@Column(name = "troco", nullable = false)
 	private Double troco;
+	
+	@OneToMany
+	@JoinColumn(name = "caixa_id")
+	List<Produto> produtos = new ArrayList<Produto>();
 	
 	@OneToOne
 	@JoinColumn(name = "caixa_id")
@@ -34,7 +42,14 @@ public class Caixa {
 		
 	}
 	
-	
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
 	public Vendedor getVendedor() {
 		return vendedor;
 	}
@@ -65,6 +80,5 @@ public class Caixa {
 	public void setTroco(Double troco) {
 		this.troco = troco;
 	}
-	
-	
+
 }

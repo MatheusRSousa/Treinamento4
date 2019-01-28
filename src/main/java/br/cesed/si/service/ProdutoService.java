@@ -17,8 +17,6 @@ public class ProdutoService {
 	@Autowired
 	private ProdutoRepository repository;
 	
-	
-	
 	public void creatProduto(Produto produto) throws Exception
 	{	if(repository.existsByNome(produto.getNome())) 
 		{	throw new Exception("Este produto já existe");
@@ -58,5 +56,9 @@ public class ProdutoService {
 			produtos.add(produto);
 		}
 		return produtos;
+	}
+	
+	public List<Produto> findByAllName(String nome)
+	{	return repository.buscaPorNome(nome);
 	}
 }

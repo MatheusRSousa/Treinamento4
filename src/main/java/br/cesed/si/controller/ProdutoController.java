@@ -61,4 +61,9 @@ public class ProdutoController {
 		service.deleteProduto(id);
 		return new ResponseEntity<Produto>(HttpStatus.OK);
 	}
+	
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<Produto>> readByAllName(@PathVariable String nome)
+	{	return new ResponseEntity<List<Produto>>(service.findByAllName(nome),HttpStatus.OK);
+	}
 }

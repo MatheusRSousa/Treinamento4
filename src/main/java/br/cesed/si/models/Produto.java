@@ -18,14 +18,24 @@ public class Produto {
 	@Column(name = "produto_nome", nullable = false)
 	private String nome;
 	
-	@Column(name = "produto_qtd", nullable = false)
-	private Integer qtd;
+	@Column(name = "produto_preco", nullable = false)
+	private Double preco;
 	
 	
 	public Produto() {
 		
 	}
 	
+	public Double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+
+
+
 	public String getNome() {
 		return nome;
 	}
@@ -34,17 +44,6 @@ public class Produto {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-
-	public Integer getQtd() {
-		return qtd;
-	}
-
-
-	public void setQtd(Integer qtd) {
-		this.qtd = qtd;
-	}
-
 
 	public Long getId() {
 		return id;
